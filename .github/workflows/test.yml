@@ -1,0 +1,27 @@
+name: Deploy specific chain
+
+on:
+  workflow_dispatch:
+    inputs:
+      chain:
+        description: "Chain name to deploy"
+        required: true
+        type: choice
+        options:
+          - ethereum
+          - arbitrum
+          - avalanche
+          - bsc
+          - fantom
+          - gnosis
+          - optimism
+          - polygon
+
+
+jobs:
+  deploy:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Setup helmfile
+        uses: mamezou-tech/setup-helmfile@v0.9.0
+      - run: helmfile --help
